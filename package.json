@@ -1,8 +1,8 @@
 {
   "name": "my-nestjs-project",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Basic Nestjs Graphql Demo App",
+  "author": "Melih Akyol",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
