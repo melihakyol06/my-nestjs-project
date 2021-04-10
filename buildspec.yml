@@ -1,0 +1,28 @@
+version: 0.2
+
+# TODO: Run tests at pre_build stage
+# TODO: /dist, /npm_modules and package-*.json should be sufficient for artifacts, change and test
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+    commands:
+      - echo Installing Yarn...
+      - npm install -g yarn
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - yarn
+      - yarn add rimraf
+  build:
+    commands:
+      - echo Build started on `date`
+      - yarn build
+  post_build:
+    commands:
+      - aws s3 cp s3://$S3_BUCKET/config/config.json ./dist
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
